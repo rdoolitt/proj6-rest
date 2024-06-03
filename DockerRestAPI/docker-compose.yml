@@ -1,18 +1,20 @@
-version: '3'  # version of compose format 
-
+version: '3'
 services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
   laptop-service:
-    build: ./laptop  
-    volumes:
-      - ./laptop:/usr/src/app 
+    build: ./laptop
     ports:
-      - 5001:80  # host:container
-
-  website:
-    image: php:apache  
-    volumes:
-      - ./website:/var/www/html 
-    ports:
-      - 5000:80  # host:container
+      - "5000:5000"
+    environment:
+      - DB_PORT_27017_TCP_ADDR=mongo
     depends_on:
-      - laptop-service  # website is not going to work unless laptop-service is running
+      - mongo
+  website:
+    build: ./website
+    ports:
+      - "80:80"
+    depends_on:
+      - laptop-service

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+    <title>Stored Control Times</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <style>
+        /* CSS styles for column labels */
+        .column-label {
+            font-weight: bold;
+            font-size: 1.1em; /* Slightly larger font size */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stored Control Times</h1>
+
+        <!-- Column labels -->
+        <div class="row">
+            <div class="col-md-2 column-label">KM</div>
+            <div class="col-md-2 column-label">MI</div>
+            <div class="col-md-2 column-label">LOCATION</div>
+            <div class="col-md-3 column-label">OPEN</div>
+            <div class="col-md-3 column-label">CLOSE</div>
+        </div>
+
+        <!-- Display stored control times -->
+        {% for item in items %}
+        <div class="row">
+            <div class="col-md-2">{{ item.km }} km</div>
+            <div class="col-md-2">{{ item.mi }} miles</div>
+            <div class="col-md-2">{{ item.location }}</div>
+            <div class="col-md-3">{{ item.open }}</div>
+            <div class="col-md-3">{{ item.close }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

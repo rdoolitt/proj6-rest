@@ -1,8 +1,12 @@
-FROM python:3-onbuild
+FROM python:3.8-slim
 
-# Copying source in current directory into the image
-# python:3-onbuild expects the source in /usr/src/app
-COPY . /usr/src/app
+WORKDIR /app
 
-# Commands in a list
+COPY . /app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
 CMD ["python", "api.py"]
