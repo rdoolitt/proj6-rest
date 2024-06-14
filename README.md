@@ -1,8 +1,8 @@
-# Project 4: Brevet time calculator with Ajax
+# Project 6: Brevet time calculator with Ajax, Mongo, and API
 Author: Ryan Doolittle
 
 Reimplemented the RUSA ACP controle time calculator with flask and ajax.
-Data is stored in a database on "submit", which is retrieved on "display"
+Data is stored in a database on "submit", which is retrieved on "display."
 
 Credits to Michal Young for the initial version of this code.
 
@@ -30,6 +30,16 @@ http://<host:port>/listOpenOnly/json?top=3 returns the top 3 open times only (in
 http://<host:port>/listCloseOnly/csv?top=6 returns the top 6 close times only (in ascending order) in CSV format
 
 This parameter is has no functionality for listAll, as the top k open times are not necessarily from the same controles as the top k close times.
+
+## Notes:
+You will need docker and docker-compose installed on your local machine.
+Any entries in the database will be cleared when the application is started to prevent buildup of old data.
+The MongoClient settings in api.py are hardcoded to a specific IP (The IP of the mongo container on my machine). I could not get the program to work otherwise. If this does not work on your local machine, I suggest changing line 17 to: client = MongoClient(os.environ['DB_PORT_27017_TCP_ADDR'], 27017)
+
+This was made on a windows machine (likely the reason I couldn't get it to work with the environment variable).
+To run the application, navigate to DockerRestAPI in cmd, and use<br> 'docker-compose up' to build the images and create/run the containers.
+The application can then be viewed at http://localhost:5000/ by default.
+
 
 ## Sources
 https://rusa.org/pages/acp-brevet-control-times-calculator <br>
